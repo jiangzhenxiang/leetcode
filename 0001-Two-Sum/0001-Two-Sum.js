@@ -26,4 +26,22 @@ var twoSum2 = function (nums, target) {
         }
     }
 };
-console.log('twoSum2', twoSum2([2, 7, 11, 15], 9));
+// console.log('twoSum2', twoSum2([2, 7, 11, 15], 9));
+
+
+
+var twoSum3 = function (nums, target) {
+    let temp = new Map();
+    for (let i = 0; i < nums.length; i++) {
+        // 第一轮循环 diff = 7 = 9 - 2
+        let diff = target - nums[i];
+        // temp[7] 为undefined
+        if (temp.has(diff)) {
+            return [temp.get(diff), i];
+        } else {
+            // temp 2 = 0
+            temp.set(nums[i], i);
+        }
+    }
+};
+// console.log('twoSum3', twoSum3([2, 7, 11, 15], 9));
