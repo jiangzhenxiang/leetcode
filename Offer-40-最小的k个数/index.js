@@ -69,7 +69,7 @@ var getLeastNumbers3 = function (arr, k) {
  */
 
 function quickSort(arr, low = 0, high = arr.length - 1) {
-    if(low < high) {
+    if (low < high) {
         let i = partition(arr, low, high);
         quickSort(arr, low, i - 1);
         quickSort(arr, i + 1, high)
@@ -78,27 +78,50 @@ function quickSort(arr, low = 0, high = arr.length - 1) {
     return arr;
 }
 
-function partition(arr, left, right) {
-    let pivot = left; // 基准数选择从0开始
-    // 一个指针i去做了一个分割
-    debugger
-    let index = pivot + 1; // 从基准数后面开始分区
-    for (let i = index; i <= right; i++) {
-        // 如果比基准点小就i++，然后交换元素位置
-        if (arr[i] < arr[pivot]) {
-            swap(arr, i, index);
-            index++;
+function partition(arr, low, high) {
+    const pivot = arr[high - 1];
+    console.log('pivot',pivot)
+    let i = low;
+    let j = high - 1;
+    // 小于中心的的值[low, i)
+    // 未确认的范围[i, j)
+    // 大于中心的的范围为[j, high-1]
+    while (i !== j) {
+        // 小于中心点就++，不需要交换
+        if (arr[i] <= pivot) {
+            i++
+        } else {
+            debugger
+            swap(arr, i, --j)
         }
     }
-    // 最后将基准点插入到i+1的位置
-    swap(arr, pivot, index - 1);
-    // 返回最终指针i的位置
-    return index - 1;
+    swap(arr, j, high - 1)
+    return j;
 }
+
+// function partition(arr, left, right) {
+//     let pivot = left; // 基准数选择从0开始
+//     // 一个指针i去做了一个分割
+//     debugger
+//     let index = pivot + 1; // 从基准数后面开始分区
+//     for (let i = index; i <= right; i++) {
+//         // 如果比基准点小就i++，然后交换元素位置
+//         if (arr[i] < arr[pivot]) {
+//             swap(arr, i, index);
+//             index++;
+//         }
+//     }
+//     // 最后将基准点插入到i+1的位置
+//     swap(arr, pivot, index - 1);
+//     // 返回最终指针i的位置
+//     return index - 1;
+// }
 
 function swap(arr, i, index) {
     [arr[i], arr[index]] = [arr[index], arr[i]];
 }
+// console.log('1', partition([10,80,30,90,40,50,70], 0, 7))
+// console.log('1')
 
 // console.log('partition', partition([3, 2, 1, 12, 5, 22], 0, 5))
 
