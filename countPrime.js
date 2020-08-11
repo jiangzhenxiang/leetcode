@@ -12,5 +12,31 @@ var countPrimes = function (n) {
     }
     return Primes;
 };
-console.log('countPrimes',countPrimes(10))
+console.log('countPrimes',countPrimes(7))
 
+
+
+
+function getPrime(n) {
+    let result = [];
+    for (let i = 2; i <= n; i++) {
+        if (isPrime(i) !== false) {
+            result.push(i)
+        }
+    }
+
+    console.log('--',result)
+
+}
+
+function isPrime(num) {
+    for (let i = 2; i <= num; i++) {
+        debugger
+        if (i !== num &&  num % i === 0) {
+            return false;
+        }
+    }
+}
+
+console.log('', isPrime(8))
+getPrime(10)
